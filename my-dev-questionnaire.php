@@ -6,7 +6,7 @@
  * Author: MY-Dev | Mohamed Youssef
  * Author URI: http://my-dev.pro
  * Description: Allaws visitors to take questionnaire and shows results in your dashboard
- * Version: 1.0.0
+ * Version: 0.1.5
  * License: GPLv2 or later
  * Requires at least: 6.0
  * Requires PHP: 7.3
