@@ -31,14 +31,11 @@ function my_dev_main_menu_page() {
 
     echo "Hello World <br />";
 
-
-    global $wpdb;
-
 }
 
 function my_dev_register_about_ques_page() {
 
-	echo "about";
+	echo "about <br />";
     echo __FILE__;
 
 }
@@ -92,10 +89,12 @@ function my_dev_activate_ques_plugin() {
     if ( $database_table_is_exists == null ) {
         $create_database_table_query = "CREATE TABLE IF NOT EXISTS `{$table_name}` (
             ID INT UNSIGNED NOT NULL AUTO_INCREMENT,
-            name VARCHAR(64) NOT NULL,
-            national_id VARCHAR(14) NOT NULL,
-            mobile_no VARCHAR(11) NOT NULL,
-            signture VARCHAR(60) NOT NULL,
+            name VARCHAR(64) NULL,
+            national_id VARCHAR(12) NULL,
+            mobile_no VARCHAR(10) NULL,
+            signture VARCHAR(60) NULL,
+            image VARCHAR(255) NULL,
+            data_signed DATETIME DEFAULT CURRENT_TIMESTAMP NOT NULL,
             PRIMARY KEY (ID)
         )";
 
@@ -114,6 +113,7 @@ function my_dev_deactivate_ques_plugin() {
     );
 
     $wpdb->update( $wpdb->posts, $data_query['order'], $data_query['where'] );
+
 }
 
 function my_dev_uninstall_ques_plugin() {
@@ -128,7 +128,10 @@ function my_dev_uninstall_ques_plugin() {
 
     if ( $is_page_exests != '0' ) {
         $wpdb->query( "DELETE FROM {$wpdb->posts} WHERE post_title = '{$page_title}'" );
+        $wpdb->query( "DROP TABLE `wp_questionnaire`" );
     }
+
+    
 
 }
 
